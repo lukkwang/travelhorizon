@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TravelHorizon</string>
+    <string name="action_settings">Settings</string>
+    <string name="list">List</string>
+    <string name="add">Add</string>
+    <string name="view">View</string>
+    <string name="modify">Modify</string>
+    <string name="del">Delete</string>
+    <string name="search">Search</string>
+    <string name="add_desc">Add item</string>
+    <string name="del_desc">Delete item</string>
+    <string name="modify_desc">Modify item</string>
+    <string name="search_desc">Search items</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="hour">hour</string>
+    <string name="min">min</string>
+    <string name="location">Loc.</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+    <string name="subject">Subject</string>
+    <string name="Content">Content</string>
+    <string name="revisit">Revisit</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="next">Next</string>
+    <string name="previous">Prev</string>
+    <string name="open_map_app">Open Map App</string>
+    <string name="update_gps_inf">Update GPS location information(latitude, longitude)</string>
+    <string name="no_data">There is no data to display.</string>
+    <string name="confirm_del_data">Are you sure you want to delete?</string>
+    <string name="app_mapp_url">http://maps.google.com/maps?saddr=%s,%s&amp;daddr=%s,%s</string>
+</resources>
