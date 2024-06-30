@@ -1,9 +1,7 @@
 package com.kotlin.travelhorizon.fragment
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.icu.util.Calendar
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
