@@ -61,8 +61,8 @@ class AddFragment : Fragment() {
             val latitude = binding.inputLatitude.text.toString()
             val longitude = binding.inputLongitude.text.toString()
 
-            val uri = getString(R.string.app_mapp_url, latitude, longitude, latitude, longitude)
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            val uri = Uri.parse("geo:${latitude},${longitude}")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         })
 

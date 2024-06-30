@@ -29,5 +29,4 @@
     <string name="update_gps_inf">Update GPS location information(latitude, longitude)</string>
     <string name="no_data">There is no data to display.</string>
     <string name="confirm_del_data">Are you sure you want to delete?</string>
-    <string name="app_mapp_url">http://maps.google.com/maps?saddr=%s,%s&amp;daddr=%s,%s</string>
 </resources>

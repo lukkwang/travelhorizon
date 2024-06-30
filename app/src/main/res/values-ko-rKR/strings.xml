@@ -30,5 +30,4 @@
     <string name="update_gps_inf">GPS 위치 정보 수정(위도, 경도)</string>
     <string name="no_data">데이타가 없습니다.</string>
     <string name="confirm_del_data">삭제하시겠습니까?</string>
-    <string name="app_mapp_url">http://maps.google.com/maps?saddr=%s,%s&amp;daddr=%s,%s</string>
 </resources>

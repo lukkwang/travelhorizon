@@ -59,12 +59,12 @@ class ModifyFragment : Fragment() {
             setLocation()
         })
 
-        binding.imgModUptGPSInfo.setOnClickListener({
+        binding.imgModEarth.setOnClickListener({
             val latitude = binding.inputLatitude2.text.toString()
             val longitude = binding.inputLongitude2.text.toString()
 
-            val uri = getString(R.string.app_mapp_url, latitude, longitude, latitude, longitude)
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            val uri = Uri.parse("geo:${latitude},${longitude}")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         })
 
