@@ -20,6 +20,7 @@ import com.kotlin.travelhorizon.R
 import com.kotlin.travelhorizon.databinding.FragmentViewBinding
 import com.kotlin.travelhorizon.dto.Dto
 import com.kotlin.travelhorizon.repository.DataBaseManager
+import com.kotlin.travelhorizon.util.Util
 
 class ViewFragment : Fragment() {
 
@@ -53,9 +54,7 @@ class ViewFragment : Fragment() {
             val latitude = binding.viewLatitude.text.toString()
             val longitude = binding.viewLongitude.text.toString()
 
-            val uri = Uri.parse("geo:${latitude},${longitude}")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
+            Util.openMapApp(requireContext(), latitude, longitude)
         })
 
         binding.btnPrev.setOnClickListener {

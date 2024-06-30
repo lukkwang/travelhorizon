@@ -21,6 +21,7 @@ import com.kotlin.travelhorizon.databinding.FragmentModifyBinding
 import com.kotlin.travelhorizon.dto.Dto
 import com.kotlin.travelhorizon.repository.DataBaseManager
 import com.kotlin.travelhorizon.util.GpsTracker
+import com.kotlin.travelhorizon.util.Util
 
 class ModifyFragment : Fragment() {
 
@@ -63,9 +64,7 @@ class ModifyFragment : Fragment() {
             val latitude = binding.inputLatitude2.text.toString()
             val longitude = binding.inputLongitude2.text.toString()
 
-            val uri = Uri.parse("geo:${latitude},${longitude}")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
+            Util.openMapApp(requireContext(), latitude, longitude)
         })
 
         binding.btnCancel2.setOnClickListener {
