@@ -37,8 +37,6 @@ class ModifyFragment : Fragment() {
 
         _binding = FragmentModifyBinding.inflate(inflater, container, false)
 
-        gpsTracker = GpsTracker(requireContext())
-
         this.id = arguments?.getString("id") ?: ""
 
         setMenu()
@@ -174,6 +172,9 @@ class ModifyFragment : Fragment() {
     }
 
     private fun setLocation() {
+
+        gpsTracker = GpsTracker(requireContext())
+
         val latitude: Double = gpsTracker!!.getLatitude()
         val longitude: Double = gpsTracker!!.getLongtitude()
 

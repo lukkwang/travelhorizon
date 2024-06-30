@@ -36,8 +36,6 @@ class AddFragment : Fragment() {
 
         _binding = FragmentAddBinding.inflate(inflater, container, false)
 
-        gpsTracker = GpsTracker(requireContext())
-
         val calendar = Calendar.getInstance()
 
         setMenu()
@@ -171,6 +169,8 @@ class AddFragment : Fragment() {
     }
 
     private fun setLocation() {
+        gpsTracker = GpsTracker(requireContext())
+
         val latitude: Double = gpsTracker!!.getLatitude()
         val longitude: Double = gpsTracker!!.getLongtitude()
 
