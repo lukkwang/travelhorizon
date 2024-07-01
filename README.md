@@ -1,4 +1,4 @@
-# 여행 지평선
+## 여행 지평선 (Travel Horizon)
 
 Android native app 으로 방문한 여행지를 기록 관리하는 앱입니다
 주요 기능은 다음과 같습니다.
