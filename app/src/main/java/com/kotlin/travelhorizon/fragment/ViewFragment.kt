@@ -62,6 +62,7 @@ class ViewFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        db.close()
         _binding = null
     }
 
@@ -89,7 +90,7 @@ class ViewFragment : Fragment() {
                         val builder = AlertDialog.Builder(requireActivity())
 
                         builder.setMessage(getResources().getString(R.string.confirm_del_data))
-                                .setPositiveButton("OK", { dialog, id ->
+                                .setPositiveButton(getResources().getString(R.string.ok), { dialog, id ->  // ok button
                                     val paramId = arguments?.getString("id")
 
                                     if (paramId != null)
@@ -99,7 +100,7 @@ class ViewFragment : Fragment() {
 
                                     Navigation.findNavController(requireView()).navigate(R.id.action_viewFragment_to_ListFragment)
                                 })
-                                .setNegativeButton("Cancel", { dialog, id ->
+                                .setNegativeButton(getResources().getString(R.string.cancel), { dialog, id ->  // cancel button
                                 })
 
                         builder.show()

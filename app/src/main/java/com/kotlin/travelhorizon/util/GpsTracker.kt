@@ -93,7 +93,7 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
 
     fun getLongtitude(): Double {
         if (location != null) {
-            latitude = location!!.longitude
+            longitude = location!!.longitude
         }
         return longitude
     }
@@ -109,7 +109,9 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
     }
 
     companion object {
-        private const val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10
-        private const val MIN_TIME_BW_UPDATES: Long = 1000 * 60 * 1
+        private const val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 0
+        private const val MIN_TIME_BW_UPDATES: Long = 0
+//        private const val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10
+//        private const val MIN_TIME_BW_UPDATES: Long = 1000 * 5 * 1
     }
 }

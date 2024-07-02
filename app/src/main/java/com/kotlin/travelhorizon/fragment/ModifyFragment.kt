@@ -26,9 +26,9 @@ class ModifyFragment : Fragment() {
     private var _binding: FragmentModifyBinding? = null
 
     private val binding get() = _binding!!
-    lateinit private var id: String  // data record id (pk)
 
-    private var gpsTracker: GpsTracker? = null
+    lateinit var db: DataBaseManager
+    lateinit private var id: String  // data record id (pk)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +38,8 @@ class ModifyFragment : Fragment() {
         _binding = FragmentModifyBinding.inflate(inflater, container, false)
 
         this.id = arguments?.getString("id") ?: ""
+
+        this.db = DataBaseManager(requireContext())
 
         setMenu()
         setCalendar()
@@ -66,8 +68,6 @@ class ModifyFragment : Fragment() {
         }
 
         binding.btnSave2.setOnClickListener {
-            val db = DataBaseManager(requireContext())
-
             val dto = Dto(
                 id = this.id.toLong(),
                 date = binding.inputDate2.text.toString(),
@@ -91,6 +91,7 @@ class ModifyFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        db.close()
         _binding = null
     }
 
@@ -157,8 +158,6 @@ class ModifyFragment : Fragment() {
     }
 
     private fun setData() {
-        val db = DataBaseManager(requireContext())
-
         val dto: Dto = db.select(this.id)
 
         binding.inputDate2.text = dto.date
@@ -172,8 +171,7 @@ class ModifyFragment : Fragment() {
     }
 
     private fun setLocation() {
-
-        gpsTracker = GpsTracker(requireContext())
+        var gpsTracker: GpsTracker? = GpsTracker(requireContext())
 
         val latitude: Double = gpsTracker!!.getLatitude()
         val longitude: Double = gpsTracker!!.getLongtitude()
@@ -182,5 +180,16 @@ class ModifyFragment : Fragment() {
 
         binding.inputLatitude2.setText(latitude.toString())
         binding.inputLongitude2.setText(longitude.toString())
+
+        gpsTracker = null
     }
+
+    /*private fun setLocation() {
+        val locationMap: Map<String, String> = Util.getLocation(requireContext())
+
+        binding.inputLatitude2.setText(locationMap.get("latitude"))
+        binding.inputLongitude2.setText(locationMap.get("longitude"))
+
+        //println("############### latitude : ${locationMap.get("latitude")} ###############  longitude: ${locationMap.get("longitude")}")
+    }*/
 }

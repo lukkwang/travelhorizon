@@ -23,10 +23,13 @@
     <string name="revisit">Revisit</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="ok">OK</string>
     <string name="next">Next</string>
     <string name="previous">Prev</string>
     <string name="open_map_app">Open Map App</string>
     <string name="update_gps_inf">Update GPS location information(latitude, longitude)</string>
     <string name="no_data">There is no data to display.</string>
     <string name="confirm_del_data">Are you sure you want to delete?</string>
+    <string name="no_gps_permission">Unable to get GPS Locations.\nTurn the location permissions on.</string>
+    <string name="no_location_info">You can\'t use a location information.</string>
 </resources>

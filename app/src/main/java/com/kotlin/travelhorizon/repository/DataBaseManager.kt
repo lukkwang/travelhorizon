@@ -213,6 +213,10 @@ class DataBaseManager(context: Context)  {
         db.execSQL(query)
     }
 
+    fun close(){
+        db.close()
+    }
+
     private inner class DataBaseSQLiteOpenHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
         override fun onCreate(db: SQLiteDatabase) {

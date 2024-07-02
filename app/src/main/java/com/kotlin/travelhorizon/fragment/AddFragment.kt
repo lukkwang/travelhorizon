@@ -3,7 +3,6 @@ package com.kotlin.travelhorizon.fragment
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -22,12 +21,11 @@ import com.kotlin.travelhorizon.repository.DataBaseManager
 import com.kotlin.travelhorizon.util.GpsTracker
 import com.kotlin.travelhorizon.util.Util
 
+
 class AddFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
-
-    private var gpsTracker: GpsTracker? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,9 +79,11 @@ class AddFragment : Fragment() {
                 content = binding.inputContent.text.toString()
             )
 
-            Log.i("Dto: ", dto.toString())
+            //Log.i("Dto: ", dto.toString())
 
             db.insert(dto)
+
+            db.close()
 
             findNavController().navigate(R.id.action_AddFragment_to_ListFragment)
         }
@@ -169,7 +169,7 @@ class AddFragment : Fragment() {
     }
 
     private fun setLocation() {
-        gpsTracker = GpsTracker(requireContext())
+        var gpsTracker: GpsTracker? = GpsTracker(requireContext())
 
         val latitude: Double = gpsTracker!!.getLatitude()
         val longitude: Double = gpsTracker!!.getLongtitude()
@@ -178,5 +178,16 @@ class AddFragment : Fragment() {
 
         binding.inputLatitude.setText(latitude.toString())
         binding.inputLongitude.setText(longitude.toString())
+
+        gpsTracker = null
     }
+
+    /*private fun setLocation() {
+        val locationMap: Map<String, String> = Util.getLocation(requireContext())
+
+        binding.inputLatitude.setText(locationMap.get("latitude"))
+        binding.inputLongitude.setText(locationMap.get("longitude"))
+
+        //println("############### latitude : ${locationMap.get("latitude")} ###############  longitude: ${locationMap.get("longitude")}")
+    }*/
 }
