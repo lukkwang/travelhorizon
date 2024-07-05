@@ -25,7 +25,7 @@ class ViewFragment : Fragment() {
     private var _binding: FragmentViewBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var db: DataBaseManager
+    lateinit private var db: DataBaseManager
     lateinit private var id: String  // data record id (pk)
 
     override fun onCreateView(

@@ -171,8 +171,32 @@ class AddFragment : Fragment() {
     private fun setLocation() {
         var gpsTracker: GpsTracker? = GpsTracker(requireContext())
 
-        val latitude: Double = gpsTracker!!.getLatitude()
-        val longitude: Double = gpsTracker!!.getLongtitude()
+        var latitude: Double = gpsTracker!!.getLatitude()
+        var longitude: Double = gpsTracker!!.getLongtitude()
+
+        if (latitude != 0.0 || longitude != 0.0) {
+            var prevLatitude: Double = latitude
+            var prevLongitude: Double = longitude
+
+            var count = 0
+            while (latitude == prevLatitude && longitude == prevLongitude) {
+                try {
+                    Thread.sleep(500)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+
+                gpsTracker = GpsTracker(requireContext())
+
+                latitude = gpsTracker!!.getLatitude()
+                longitude = gpsTracker!!.getLongtitude()
+
+                if (count > 9)
+                    break
+                else
+                    count++
+            }
+        }
 
         //println("############### latitude : " + latitude + "\n" + "###############  longitude: " + longitude)
 
