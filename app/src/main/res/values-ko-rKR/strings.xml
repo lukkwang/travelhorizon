@@ -33,4 +33,5 @@
     <string name="confirm_del_data">삭제하시겠습니까?</string>
     <string name="no_gps_permission">GPS 를 사용할 수 없습니다.\n위치 권한을 추가해 주십시오.</string>
     <string name="no_location_info">위치 정보를 사용할 수 없습니다.</string>
+    <string name="progress_loading">위치 데이타를 로딩 중입니다. ...</string>
 </resources>

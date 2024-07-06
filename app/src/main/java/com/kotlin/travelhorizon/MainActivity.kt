@@ -2,7 +2,6 @@ package com.kotlin.travelhorizon
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
+import android.view.View
 import androidx.core.app.ActivityCompat
 import com.kotlin.travelhorizon.databinding.ActivityMainBinding
 
@@ -62,5 +62,10 @@ class MainActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_PERMISSION_LOCATION)
                 false
             }
+    }
+
+    public fun showHideProgressBar(visibility: Boolean) {
+        binding.progressBar.visibility = if (visibility) View.VISIBLE else View.GONE
+        binding.textProgressBar.visibility = if (visibility) View.VISIBLE else View.GONE
     }
 }

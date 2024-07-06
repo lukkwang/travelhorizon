@@ -2,6 +2,8 @@ package com.kotlin.travelhorizon.fragment
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
+import com.kotlin.travelhorizon.MainActivity
 import com.kotlin.travelhorizon.R
 import com.kotlin.travelhorizon.databinding.FragmentModifyBinding
 import com.kotlin.travelhorizon.dto.Dto
@@ -53,7 +56,11 @@ class ModifyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imgModUptGPSInfo.setOnClickListener( {
-            setLocation()
+            (context as MainActivity).showHideProgressBar(true)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                setLocation()                //실행할 코드
+            }, 0)
         })
 
         binding.imgModEarth.setOnClickListener({
@@ -204,6 +211,8 @@ class ModifyFragment : Fragment() {
 
         binding.inputLatitude2.setText(latitude.toString())
         binding.inputLongitude2.setText(longitude.toString())
+
+        (context as MainActivity).showHideProgressBar(false)
 
         gpsTracker = null
     }

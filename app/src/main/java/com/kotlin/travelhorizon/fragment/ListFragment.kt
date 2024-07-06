@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.kotlin.travelhorizon.MainActivity
 import com.kotlin.travelhorizon.repository.DataBaseManager
 import com.kotlin.travelhorizon.R
 import com.kotlin.travelhorizon.databinding.FragmentListBinding
@@ -57,6 +58,7 @@ class ListFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.menu_add -> {
+                        (context as MainActivity).showHideProgressBar(true)
                         Navigation.findNavController(requireView()).navigate(R.id.action_ListFragment_to_AddFragment)
                         true
                     }

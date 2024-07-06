@@ -1,26 +1,25 @@
 package com.kotlin.travelhorizon.util
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationManager
 import android.net.Uri
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
-import com.kotlin.travelhorizon.R
 
 class Util {
     companion object {
+
+        fun openMapApp(context: Context, latitude: String, longitude: String) {
+            val uri = Uri.parse("geo:${latitude},${longitude}")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(context, intent, null)
+        }
+
 
         /**
          * retrieve GPS Location
          * @return key: latitude,  longitude
          */
-        fun getLocation(context: Context): Map<String, String> {
+        /*fun getLocation(context: Context): Map<String, String> {
 
             val locationMap: MutableMap<String, String> = mutableMapOf<String, String>()
 
@@ -45,13 +44,6 @@ class Util {
             }
 
             return locationMap
-        }
-
-
-        fun openMapApp(context: Context, latitude: String, longitude: String) {
-            val uri = Uri.parse("geo:${latitude},${longitude}")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(context, intent, null)
-        }
+        }*/
     }
 }

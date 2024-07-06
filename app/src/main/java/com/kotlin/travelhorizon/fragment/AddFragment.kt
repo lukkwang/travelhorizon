@@ -3,6 +3,8 @@ package com.kotlin.travelhorizon.fragment
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -14,6 +16,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.kotlin.travelhorizon.MainActivity
 import com.kotlin.travelhorizon.R
 import com.kotlin.travelhorizon.databinding.FragmentAddBinding
 import com.kotlin.travelhorizon.dto.Dto
@@ -34,6 +37,8 @@ class AddFragment : Fragment() {
 
         _binding = FragmentAddBinding.inflate(inflater, container, false)
 
+        (context as MainActivity).showHideProgressBar(false)
+
         val calendar = Calendar.getInstance()
 
         setMenu()
@@ -49,7 +54,11 @@ class AddFragment : Fragment() {
         setLocation()
 
         binding.imgAddUptGPSInfo.setOnClickListener( {
-            setLocation()
+            (context as MainActivity).showHideProgressBar(true)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                setLocation()
+            }, 0)
         })
         
         binding.imgAddEarth.setOnClickListener({
@@ -202,6 +211,8 @@ class AddFragment : Fragment() {
 
         binding.inputLatitude.setText(latitude.toString())
         binding.inputLongitude.setText(longitude.toString())
+
+        (context as MainActivity).showHideProgressBar(false)
 
         gpsTracker = null
     }
