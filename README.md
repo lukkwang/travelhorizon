@@ -10,8 +10,7 @@ Android native app 으로 방문한 여행지를 기록 관리하는 앱입니�
 
 ---
 
-<p style="align: center">
-  <p style="align: center; color:gray">
+<p style="text: center">
   <img src="https://github.com/lukkwang/travelhorizon/blob/v1.0/images/captures/Screenshot_20240701-112249.png" width="260px" alt=""> &nbsp; &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/lukkwang/travelhorizon/blob/v1.0/images/captures/Screenshot_20240701-111440.png" width="260px" alt=""> 
 </p>
