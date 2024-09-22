@@ -9,9 +9,8 @@ Android native app 으로 방문한 여행지를 기록 관리하는 앱입니�
 + 지도 아이콘 클릭시 안드로이드에 등록된 지도 앱을 열어서 위치 표시
 
 ---
- 
-<p style="align: center">
-  <p style="align: center; color:gray">
+
+<p>
   <img src="https://github.com/lukkwang/travelhorizon/blob/v1.0/images/captures/Screenshot_20240701-112249.png" width="260px" alt=""> &nbsp; &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/lukkwang/travelhorizon/blob/v1.0/images/captures/Screenshot_20240701-111440.png" width="260px" alt=""> 
 </p>
