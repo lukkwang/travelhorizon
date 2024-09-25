@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat.startActivity
 class Util {
     companion object {
 
+        const val URL_APP_DB = "/data/data/com.kotlin.travelhorizon/databases/travel_horizon"
+
         fun openMapApp(context: Context, latitude: String, longitude: String) {
             val uri = Uri.parse("geo:${latitude},${longitude}")
             val intent = Intent(Intent.ACTION_VIEW, uri)

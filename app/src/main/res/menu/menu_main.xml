@@ -15,6 +15,15 @@
         android:title="@string/del_desc"
         app:showAsAction="always" />
     <item
+        android:id="@+id/menu_export"
+        android:orderInCategory="41"
+        android:title="@string/backup"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_import"
+        android:orderInCategory="42"
+        android:title="@string/restore" />
+    <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search_black_24dp"
         android:orderInCategory="30"

@@ -34,4 +34,10 @@
     <string name="no_gps_permission">GPS 를 사용할 수 없습니다.\n위치 권한을 추가해 주십시오.</string>
     <string name="no_location_info">위치 정보를 사용할 수 없습니다.</string>
     <string name="progress_loading">위치 데이타를 로딩 중입니다. ...</string>
+    <string name="error">에러가 발생하였습니다.</string>
+    <string name="backup">백업</string>
+    <string name="restore">복구</string>
+    <string name="confirm_restore">데이타를 복구하면 기존 데이타는 모두 삭제됩니다.\n데이타를 복구하시겠습니까?</string>
+    <string name="backup_complete">백업이 완료되었습니다.</string>
+    <string name="restore_complete">복구가 완료되었습니다.\n앱을 다시 시작해 주십시오.</string>
 </resources>

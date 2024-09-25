@@ -112,6 +112,8 @@ class ModifyFragment : Fragment() {
                 menu.findItem(R.id.menu_modify).setVisible(false)
                 menu.findItem(R.id.menu_search).setVisible(false)
                 menu.findItem(R.id.menu_del).setVisible(false)
+                menu.findItem(R.id.menu_export).setVisible(false)
+                menu.findItem(R.id.menu_import).setVisible(false)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
