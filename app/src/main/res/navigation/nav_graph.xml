@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ListFragment">
+
+    <fragment
+        android:id="@+id/ListFragment"
+        android:name="com.kotlin.travelhorizon.fragment.ListFragment"
+        android:label="@string/list"
+        tools:layout="@layout/fragment_list">
+
+        <action
+            android:id="@+id/action_ListFragment_to_AddFragment"
+            app:destination="@id/AddFragment" />
+        <action
+            android:id="@+id/action_ListFragment_to_ViewFragment"
+            app:destination="@id/viewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AddFragment"
+        android:name="com.kotlin.travelhorizon.fragment.AddFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_add">
+
+        <action
+            android:id="@+id/action_AddFragment_to_ListFragment"
+            app:destination="@id/ListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="com.kotlin.travelhorizon.fragment.ViewFragment"
+        android:label="@string/view"
+        tools:layout="@layout/fragment_view">
+        <action
+            android:id="@+id/action_viewFragment_to_ListFragment"
+            app:destination="@id/ListFragment" />
+        <action
+            android:id="@+id/action_viewFragment_to_modifyFragment"
+            app:destination="@id/modifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifyFragment"
+        android:name="com.kotlin.travelhorizon.fragment.ModifyFragment"
+        android:label="@string/modify"
+        tools:layout="@layout/fragment_modify">
+        <action
+            android:id="@+id/action_modifyFragment_to_viewFragment2"
+            app:destination="@id/viewFragment" />
+        <action
+            android:id="@+id/action_modifyFragment_to_ListFragment"
+            app:destination="@id/ListFragment" />
+    </fragment>
+</navigation>
