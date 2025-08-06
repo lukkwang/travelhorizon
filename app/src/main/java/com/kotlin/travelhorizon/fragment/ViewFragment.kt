@@ -100,7 +100,9 @@ class ViewFragment : Fragment() {
 
                                     dialog.dismiss()
 
-                                    Navigation.findNavController(requireView()).navigate(R.id.action_viewFragment_to_ListFragment)
+                                    val bundle = bundleOf("year" to binding.viewDate.text.split("-")[0])
+
+                                    Navigation.findNavController(requireView()).navigate(R.id.action_viewFragment_to_ListFragment, bundle)
                                 })
                                 .setNegativeButton(getResources().getString(R.string.cancel), { dialog, id ->  // cancel button
                                 })

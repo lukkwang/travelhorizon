@@ -27,8 +27,6 @@ import com.kotlin.travelhorizon.databinding.FragmentListBinding
 import com.kotlin.travelhorizon.repository.DataBaseManager
 import com.kotlin.travelhorizon.util.Util
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.lang.Exception
 
 /**
@@ -43,12 +41,16 @@ class ListFragment : Fragment() {
     private val REQ_CREATE_FILE = 100
     private val REQ_OPEN_FILE = 101
 
+    lateinit private var year: String  // to select tab and pager (from other fraagment)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentListBinding.inflate(inflater, container, false)
+
+        this.year = arguments?.getString("year") ?: ""
 
         setMenu()
         setTabAndPager()
@@ -107,10 +109,20 @@ class ListFragment : Fragment() {
             //binding.viewPager.adapter = adapter
             binding.viewPager.setAdapter(adapter)
 
+            var tabToSelect = 0
+
             TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
                 tab.text = tabList[pos]
                 //tab.setIcon(tabIconList[pos])
+
+                if (!this.year.isNullOrBlank() && (this.year == tab.text)) {
+                    tabToSelect = pos
+                }
             }.attach()
+
+            if (tabToSelect > 0) {  // select tab and pager for the year that worked
+                binding.viewPager.setCurrentItem(tabToSelect, false)
+            }
         } else {
             binding.tabLayout.visibility = View.GONE
             binding.viewPager.visibility = View.GONE
@@ -226,8 +238,8 @@ class ListFragment : Fragment() {
             fragments.add(fragment)
         }
 
-        fun removeFragment() {
-            fragments.removeLast()
-        }
+//        fun removeFragment() {
+//            fragments.removeLast()
+//        }
     }
 }

@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
@@ -92,7 +93,9 @@ class ModifyFragment : Fragment() {
 
             db.update(dto)
 
-            findNavController().navigate(R.id.action_modifyFragment_to_ListFragment)
+            val bundle = bundleOf("year" to dto.year)
+
+            findNavController().navigate(R.id.action_modifyFragment_to_ListFragment, bundle)
         }
     }  // override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 
