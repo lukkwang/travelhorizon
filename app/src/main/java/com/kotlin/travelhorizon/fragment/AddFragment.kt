@@ -2,6 +2,7 @@ package com.kotlin.travelhorizon.fragment
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
+import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,13 +24,16 @@ import com.kotlin.travelhorizon.databinding.FragmentAddBinding
 import com.kotlin.travelhorizon.dto.Dto
 import com.kotlin.travelhorizon.repository.DataBaseManager
 import com.kotlin.travelhorizon.util.GpsTracker
+import com.kotlin.travelhorizon.util.LocationUpdateListener
 import com.kotlin.travelhorizon.util.Util
 
 
-class AddFragment : Fragment() {
+class AddFragment : Fragment(), LocationUpdateListener {
 
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
+
+    var gpsTracker: GpsTracker? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +42,9 @@ class AddFragment : Fragment() {
 
         _binding = FragmentAddBinding.inflate(inflater, container, false)
 
-        (context as MainActivity).showHideProgressBar(false)
+        (context as MainActivity).showHideProgressBar(true)
+
+        gpsTracker = GpsTracker(requireContext(), this)
 
         val calendar = Calendar.getInstance()
 
@@ -184,43 +190,21 @@ class AddFragment : Fragment() {
     }
 
     private fun setLocation() {
-        var gpsTracker: GpsTracker? = GpsTracker(requireContext())
+        gpsTracker?.getLocation()
+    }
 
-        var latitude: Double = gpsTracker!!.getLatitude()
-        var longitude: Double = gpsTracker!!.getLongtitude()
+    /**
+     * GPS location update call back
+     */
+    override fun onLocationUpdated(location: Location) {
+        activity?.runOnUiThread {
+            binding.inputLatitude.setText(location!!.latitude.toString())
+            binding.inputLongitude.setText(location!!.longitude.toString())
 
-        if (latitude != 0.0 || longitude != 0.0) {
-            var prevLatitude: Double = latitude
-            var prevLongitude: Double = longitude
+            gpsTracker?.stopUsingGps()
 
-            var count = 0
-            while (latitude == prevLatitude && longitude == prevLongitude) {
-                try {
-                    Thread.sleep(500)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-
-                gpsTracker = GpsTracker(requireContext())
-
-                latitude = gpsTracker!!.getLatitude()
-                longitude = gpsTracker!!.getLongtitude()
-
-                if (count > 9)
-                    break
-                else
-                    count++
-            }
+            (context as MainActivity).showHideProgressBar(false)
         }
-
-        //println("############### latitude : " + latitude + "\n" + "###############  longitude: " + longitude)
-
-        binding.inputLatitude.setText(latitude.toString())
-        binding.inputLongitude.setText(longitude.toString())
-
-        (context as MainActivity).showHideProgressBar(false)
-
-        gpsTracker = null
     }
 
     /*private fun setLocation() {

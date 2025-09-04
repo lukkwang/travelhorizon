@@ -10,21 +10,27 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.IBinder
 
-class GpsTracker(private val mContext: Context) : Service(), LocationListener {
-    private var location: Location? = null
+interface LocationUpdateListener {
+    fun onLocationUpdated(location: Location)
+}
+
+class GpsTracker(private val mContext: Context, private val listener: LocationUpdateListener) : Service(), LocationListener {
+    //private var location: Location? = null
     private var latitude = 0.0
     private var longitude = 0.0
 
     private var locationManager: LocationManager? = null
 
-    init {
-        getLocation()
-    }
+//    init {
+//        getLocation()
+//    }
 
     // whenever location chanage
     override fun onLocationChanged(p0: Location) {
-        latitude = location!!.latitude
-        longitude = location!!.longitude
+//        latitude = location!!.latitude
+//        longitude = location!!.longitude
+
+        listener.onLocationUpdated(p0)
     }
 
     override fun onProviderEnabled(provider: String) {}
@@ -35,7 +41,8 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
 
 
     @SuppressLint("MissingPermission")
-    private fun getLocation() {
+    //private fun getLocation() {
+    fun getLocation() {
         try {
             locationManager = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
             val isGPSEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -51,32 +58,32 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
                         MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
                         this
                     )
-                    if (locationManager != null) {
+                    /*if (locationManager != null) {
                         location =
                             locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                         if (location != null) {
                             latitude = location!!.latitude
                             longitude = location!!.longitude
                         }
-                    }
+                    }*/
                 }
                 if (isGPSEnabled) {
-                    if (location == null) {
+                    //if (location == null) {
                         locationManager!!.requestLocationUpdates(
                             LocationManager.GPS_PROVIDER,
                             MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
                             this
                         )
-                        if (locationManager != null) {
+                        /*if (locationManager != null) {
                             location =
                                 locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                             if (location != null) {
                                 latitude = location!!.latitude
                                 longitude = location!!.longitude
                             }
-                        }
-                    }
+                        }*/
+                    //}
                 }
             }
         } catch (e: java.lang.Exception) {
@@ -84,7 +91,7 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
         }
     }
 
-    fun getLatitude(): Double {
+    /*fun getLatitude(): Double {
         if (location != null) {
             latitude = location!!.latitude
         }
@@ -96,7 +103,7 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
             longitude = location!!.longitude
         }
         return longitude
-    }
+    }*/
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
