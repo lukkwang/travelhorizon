@@ -127,6 +127,6 @@ class ViewFragment : Fragment() {
         binding.viewLongitude.text = dto.longitude
         binding.viewCheck.text = if (dto.revisitFlag) "\u2611" else "\u2610"
         binding.viewSubject.text = dto.subject
-        binding.viewContent.text = dto.content
+        binding.viewContent.setText(dto.content)
     }
 }
