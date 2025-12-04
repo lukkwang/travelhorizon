@@ -1,7 +1,6 @@
 package com.kotlin.travelhorizon.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,7 @@ class TabListFragment(private val year: String): Fragment() {
 
         val db = DataBaseManager(requireContext())
 
-        val recordList: List<Dto> = db.selectList(this.year)
+        val recordList: MutableList<Dto> = db.selectList(this.year)
 
         val adapter = RecordAdapter(recordList)
 

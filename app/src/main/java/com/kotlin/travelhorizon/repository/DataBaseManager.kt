@@ -1,9 +1,9 @@
 package com.kotlin.travelhorizon.repository
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import com.kotlin.travelhorizon.dto.Dto
 
 class DataBaseManager(context: Context)  {
@@ -92,7 +92,7 @@ class DataBaseManager(context: Context)  {
     /**
      * retrieve record list in a tab
      */
-    fun selectList(year: String): List<Dto> {
+    fun selectList(year: String): MutableList<Dto> {
 
         val recordList: MutableList<Dto> = mutableListOf()
 
@@ -132,7 +132,7 @@ class DataBaseManager(context: Context)  {
 
         cursor.close()
 
-        return recordList.toList()
+        return recordList
     }
 
     /**
@@ -216,6 +216,83 @@ class DataBaseManager(context: Context)  {
     fun close(){
         db.close()
     }
+
+
+    /**
+     * search list
+     */
+    fun searchtList(keyWord: String): MutableList<Dto> {
+
+        val recordList: MutableList<Dto> = mutableListOf()
+
+        lateinit var cursor: Cursor
+
+        if (keyWord.isNullOrBlank())
+        {
+            val query = """SELECT
+                                $TABLE_ROW_ID,
+                                $TABLE_ROW_DATE,
+                                $TABLE_ROW_HOUR,
+                                $TABLE_ROW_MIN,
+                                $TABLE_ROW_REVISIT,
+                                $TABLE_ROW_SUBJECT
+                        FROM
+                                $TABLE_NAME
+                        WHERE
+                                $TABLE_ROW_REVISIT = 1
+                        ORDER BY
+                                $TABLE_ROW_DATE DESC,
+                                $TABLE_ROW_HOUR DESC,
+                                $TABLE_ROW_MIN DESC,
+                                $TABLE_ROW_ID DESC"""
+
+            //Log.i("search list : ", query + " : " + keyWord)
+
+            cursor = db.rawQuery(query, null)
+        }
+        else {
+            val query = """SELECT
+                                $TABLE_ROW_ID,
+                                $TABLE_ROW_DATE,
+                                $TABLE_ROW_HOUR,
+                                $TABLE_ROW_MIN,
+                                $TABLE_ROW_REVISIT,
+                                $TABLE_ROW_SUBJECT
+                        FROM
+                                $TABLE_NAME
+                        WHERE
+                                $TABLE_ROW_SUBJECT LIKE ?
+                                OR
+                                $TABLE_ROW_CONTENT LIKE ?
+                        ORDER BY
+                                $TABLE_ROW_DATE DESC,
+                                $TABLE_ROW_HOUR DESC,
+                                $TABLE_ROW_MIN DESC,
+                                $TABLE_ROW_ID DESC"""
+
+            //Log.i("search list : ", query + " : " + keyWord)
+
+            cursor = db.rawQuery(query, arrayOf("%$keyWord%", "%$keyWord%"))
+        }
+
+        while (cursor.moveToNext()) {
+            val dto: Dto = Dto(
+                id = cursor.getLong(0),
+                date = cursor.getString(1),
+                hour = cursor.getInt(2),
+                min = cursor.getInt(3),
+                revisitFlag = if (cursor.getInt(4) == 1) true else false,
+                subject = cursor.getString(5)
+            )
+
+            recordList.add(dto)
+        }
+
+        cursor.close()
+
+        return recordList
+    }  // fun searchtList(keyWord: String): MutableList<Dto>
+
 
     private inner class DataBaseSQLiteOpenHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 

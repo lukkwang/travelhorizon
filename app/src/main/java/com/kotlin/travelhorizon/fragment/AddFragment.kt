@@ -125,6 +125,7 @@ class AddFragment : Fragment(), LocationUpdateListener {
                 menu.findItem(R.id.menu_export).setVisible(false)
                 menu.findItem(R.id.menu_export).setVisible(false)
                 menu.findItem(R.id.menu_import).setVisible(false)
+                menu.findItem(R.id.menu_vertion).setVisible(false)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

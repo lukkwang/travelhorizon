@@ -87,6 +87,20 @@ class ListFragment : Fragment() {
                         restore()
                         true
                     }
+                    R.id.menu_search -> {
+                        Navigation.findNavController(requireView()).navigate(R.id.action_ListFragment_to_searchFragment)
+                        true
+                    }
+                    R.id.menu_vertion -> {
+                        val builder = AlertDialog.Builder(requireActivity())
+
+                        builder.setMessage(getResources().getString(R.string.version) + " " + Util.getAppVersionName(requireContext()))
+                            .setPositiveButton(getResources().getString(R.string.ok), null)
+
+                        builder.show()
+
+                        true
+                    }
                     else -> false
                 }
             }

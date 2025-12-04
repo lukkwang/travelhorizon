@@ -5,7 +5,6 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -123,6 +122,7 @@ class ModifyFragment : Fragment(), LocationUpdateListener {
                 menu.findItem(R.id.menu_del).setVisible(false)
                 menu.findItem(R.id.menu_export).setVisible(false)
                 menu.findItem(R.id.menu_import).setVisible(false)
+                menu.findItem(R.id.menu_vertion).setVisible(false)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

@@ -10,7 +10,7 @@
     <string name="add_desc">Add item</string>
     <string name="del_desc">Delete item</string>
     <string name="modify_desc">Modify item</string>
-    <string name="search_desc">Search items</string>
+    <string name="search_items">Search items</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="hour">hour</string>
@@ -39,4 +39,6 @@
     <string name="confirm_restore">If you restore the data, then All Data that alreay exist will be deleted.\nDo you want to restore the data?</string>
     <string name="backup_complete">Backup(Export) completed.</string>
     <string name="restore_complete">Restore(Import) completed.\nRestart App</string>
+    <string name="search_desc">If there is no any input word, Items that Revisit is checked will be searched.</string>
+    <string name="version">Version</string>
 </resources>

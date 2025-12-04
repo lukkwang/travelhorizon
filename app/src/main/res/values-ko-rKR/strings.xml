@@ -11,7 +11,7 @@
     <string name="add_desc">항목 추가</string>
     <string name="del_desc">항목 삭제</string>
     <string name="modify_desc">항목 수정</string>
-    <string name="search_desc">항목 검색</string>
+    <string name="search_items">항목 검색</string>
     <string name="date">날짜</string>
     <string name="time">시간</string>
     <string name="hour">시</string>
@@ -40,4 +40,6 @@
     <string name="confirm_restore">데이타를 복구하면 기존 데이타는 모두 삭제됩니다.\n데이타를 복구하시겠습니까?</string>
     <string name="backup_complete">백업이 완료되었습니다.</string>
     <string name="restore_complete">복구가 완료되었습니다.\n앱을 다시 시작해 주십시오.</string>
+    <string name="search_desc">아무 단어도 입력하지 않으면 "재방문"이 선택된 항목들이 검색됩니다.</string>
+    <string name="version">버전</string>
 </resources>

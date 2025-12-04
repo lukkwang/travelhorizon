@@ -17,6 +17,28 @@ class Util {
         }
 
 
+        fun getAppVersionName(context: Context): String {
+            try {
+                val packageName = context.packageName // 또는 requireContext().packageName
+                val packageManager = context.packageManager
+
+                val packageInfo = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                    packageManager.getPackageInfo(packageName, android.content.pm.PackageManager.PackageInfoFlags.of(0))
+                } else {
+                    // Deprecated for newer APIs, but works for older ones
+                    @Suppress("DEPRECATION")
+                    packageManager.getPackageInfo(packageName, 0)
+                }
+
+                return packageInfo.versionName ?: "0"
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return "Unknown" // 버전 정보를 가져오는데 실패했을 때 반환할 기본값
+            }
+        }
+
+
         /**
          * retrieve GPS Location
          * @return key: latitude,  longitude
