@@ -16,6 +16,7 @@ import com.kotlin.travelhorizon.databinding.FragmentSearchBinding
 import com.kotlin.travelhorizon.repository.DataBaseManager
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kotlin.travelhorizon.adapter.SearchRecordAdapter
 import com.kotlin.travelhorizon.dto.Dto
@@ -44,6 +45,9 @@ class SearchFragment : Fragment() {
 
         binding.searchListRecyclerView.layoutManager = layoutManager
         binding.searchListRecyclerView.itemAnimator = DefaultItemAnimator()
+
+        // Add a neat dividing line between items in the list
+        binding.searchListRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
         adapter = SearchRecordAdapter(mutableListOf<Dto>())
         binding.searchListRecyclerView.adapter = adapter
